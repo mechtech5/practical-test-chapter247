@@ -8,6 +8,7 @@ class OrdersTableSeeder extends Seeder
     public function run()
     {
     	$order = new Order;
+      $order->customer_id = rand(1, 200);
   		$order->invoice_number = '#'.str_pad(1, 8, "0", STR_PAD_LEFT);
   		$order->total_amount = 0;
   		$order->status = 'new';
@@ -16,6 +17,7 @@ class OrdersTableSeeder extends Seeder
       foreach(range(1, 49) as $index)
 	    {
         $order = new Order;
+        $order->customer_id = rand(1, 200);
   			$latestOrder = Order::orderBy('created_at', 'DESC')->first();
   			$order->invoice_number = '#'.str_pad($latestOrder->id + 1, 8, "0", STR_PAD_LEFT);
   			$order->total_amount = 0;

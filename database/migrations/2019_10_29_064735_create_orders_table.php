@@ -15,6 +15,7 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('customer_id');
             $table->string('invoice_number');
             $table->decimal('total_amount', 11, 2);
             $table->enum('status', ["new", "processed"]);
