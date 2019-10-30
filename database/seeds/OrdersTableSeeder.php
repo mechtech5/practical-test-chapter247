@@ -27,7 +27,7 @@ class OrdersTableSeeder extends Seeder
 
       foreach(App\Order::all() as $order) {
         foreach(App\Product::all() as $product) {
-          if (rand(1, 100) > 70) {
+          if (rand(1, 100) > 90) {
               $order->products()->attach([$product->id => ['quantity' => rand(1, 100)] ]);
           }
         }

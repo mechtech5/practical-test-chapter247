@@ -64,7 +64,12 @@ class HomeController extends Controller
 
     public function processOrder($order_id)
     {
-        $order = Order::with('customer')->where('id', $order_id)->first();
+        $order = Order::with('customer', 'products')->where('id', $order_id)->first();
+        $order->status = 'processed';
+        $order->update();
+
+        activity()->log(auth()->user()->name.' processed the order: '. $order_id);
+
         return view('view-order', ['order' => $order]);
     }
 }
